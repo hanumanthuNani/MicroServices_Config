@@ -4,7 +4,7 @@ spring:
       routes:
 
         - id: user-service
-          uri: lb://user-service
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
           filters:
@@ -14,7 +14,7 @@ spring:
                 fallbackUri: forward:/fallback/user
 
         - id: order-service
-          uri: lb://order-service
+          uri: lb://ORDER-SERVICE
           predicates:
             - Path=/orders/**
           filters:
