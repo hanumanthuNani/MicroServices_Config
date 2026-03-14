@@ -22,3 +22,25 @@ spring:
               args:
                 name: orderServiceCircuit
                 fallbackUri: forward:/fallback/order
+
+  zipkin:
+    base-url: http://localhost:9411
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    gateway:
+      enabled: true
+
+  tracing:
+    sampling:
+      probability: 1.0
+
+  metrics:
+    export:
+      prometheus:
+        enabled: true
