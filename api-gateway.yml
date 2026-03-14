@@ -1,12 +1,22 @@
+server:
+  port: 8080
+
 spring:
+  application:
+    name: api-gateway
+
   cloud:
     gateway:
+
+      metrics:
+        enabled: true
+
       routes:
 
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/users/**
+            - Path=/users,/users/**
           filters:
             - name: CircuitBreaker
               args:
@@ -16,7 +26,7 @@ spring:
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
-            - Path=/orders/**
+            - Path=/orders,/orders/**
           filters:
             - name: CircuitBreaker
               args:
